@@ -43,11 +43,12 @@ chmod a+rx ${CONFIG_DIR}
 chmod a+rx ${OVERRIDE_DIR}
 chmod a+rx ${PROFILED_DIR}
 
+
 ${DOCKER} run \
-	-v ${BINARY_DIR}:/dest \
+        -v ${BINARY_DIR}:/dest \
 	golang:1.20.1 \
 	sh -c "
-	go install github.com/NVIDIA/mig-parted/cmd@latest
+	https_proxy=http://rhn-proxy.rz.uos.de:3128 go install github.com/NVIDIA/mig-parted/cmd@v0.5.0
 	mv /go/bin/cmd /dest/nvidia-mig-parted
 	"
 
